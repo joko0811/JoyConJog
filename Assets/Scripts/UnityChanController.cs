@@ -3,6 +3,7 @@ using System.Linq;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Assertions.Must;
 
 public class UnityChanController : MonoBehaviour
 {
@@ -43,34 +44,49 @@ public class UnityChanController : MonoBehaviour
     void Update()
     {
         if (m_joycons == null || m_joycons.Count <= 0) return;
-        var accelR = m_joyconR.GetAccel();  // 加速度
+        //var accelR = m_joyconR.GetAccel();  // 加速度
+        //Debug.Log("accelR" + accelR);
         var accelL = m_joyconL.GetAccel();  // 加速度
+        Debug.Log("accelL" + accelL);
+        //var accelAve = (accelR.magnitude + accelL.magnitude ) / 2.0f;
+        float accelMag = accelL.magnitude;
+        const float mulSpeed = 1.5f;
+        speed = accelMag * mulSpeed;
+        accelMag /= 3.0f;
+        Debug.Log("accelMag" + accelMag);
 
         if (ground)
         {
-            if (accelL.x > 1 || accelR.x > 1)
+            //Debug.Log(accelMag);
+            if (accelMag > 0.4)
             {
                 float x = Time.deltaTime * speed;
                 float z = Time.deltaTime * speed;
                 rb.MovePosition(transform.position + new Vector3(x, 0, z));
                 Vector3 direction = transform.position - playerPos;
-               
+
+                Debug.Log(direction.magnitude);
                 if (direction.magnitude > 0.01f)
                 {
-                
+
                     transform.rotation = Quaternion.LookRotation(new Vector3
                         (direction.x, 0, direction.z));
-            
+
                     animator.SetBool("Running", true);
+                    animator.speed = accelMag;
                 }
                 else
                 {
-         
-                    animator.SetBool("Running", false);
+                    //animator.SetBool("Running", false);
                 }
                 playerPos = transform.position;
             }
+            else
+            {
+                animator.SetBool("Running", false);
+            }
         }
+
 
         /*
         //地面に接触していると作動する

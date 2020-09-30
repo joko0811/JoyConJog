@@ -62,7 +62,7 @@ public class UnityChanController : MonoBehaviour
             {
                 float x = Time.deltaTime * speed;
                 float z = Time.deltaTime * speed;
-                rb.MovePosition(transform.position + new Vector3(x, 0, z));
+                rb.MovePosition(transform.position + new Vector3(0, 0, z));
                 Vector3 direction = transform.position - playerPos;
 
                 Debug.Log(direction.magnitude);
@@ -70,7 +70,7 @@ public class UnityChanController : MonoBehaviour
                 {
 
                     transform.rotation = Quaternion.LookRotation(new Vector3
-                        (direction.x, 0, direction.z));
+                        (0, 0, direction.z));
 
                     animator.SetBool("Running", true);
                     animator.speed = accelMag;

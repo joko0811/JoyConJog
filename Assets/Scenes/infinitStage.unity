@@ -508,7 +508,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Plane: {fileID: 5696608716172317282, guid: 4148b9e5a50d59f4bbbe26b46f7d9016, type: 3}
-  character: {fileID: 0}
+  character: {fileID: 1799240744}
 --- !u!4 &1937627894
 Transform:
   m_ObjectHideFlags: 0

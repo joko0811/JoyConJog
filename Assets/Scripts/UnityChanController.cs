@@ -150,12 +150,4 @@ public class UnityChanController : MonoBehaviour
         //ジャンプのアニメーションをオンにする
         animator.SetBool("Jumping", true);
     }
-    void OnCollisionEnter(Collision other)
-    {
-        if (other.gameObject.tag == "target")
-        {
-            m_joyconL.SetRumble(160, 320, 0.6f, 200);
-
-        }
-    }
 }

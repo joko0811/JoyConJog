@@ -52,12 +52,10 @@ public class VRController : MonoBehaviour
             accelMag /= 3.0f;
             Debug.Log("accelMag" + accelMag);
 
-            if (ground)
-            {
                 //Debug.Log(accelMag);
                 if (accelMag > 0.4)
                 {
-                    float x = Time.deltaTime * speed;
+                    //float x = Time.deltaTime * speed;
                     float z = Time.deltaTime * speed;
                     Vector3 direction = transform.position - playerPos;
 
@@ -68,9 +66,9 @@ public class VRController : MonoBehaviour
                         transform.rotation = Quaternion.LookRotation(new Vector3
                             (0, 0, direction.z));
                     }
+                    //ユニティちゃんの位置を更新する
+                    transform.position += new Vector3(0, 0, z);
 
-                    
-                }
             }
 
         }

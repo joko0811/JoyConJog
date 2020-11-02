@@ -7,7 +7,7 @@ public class moveCity : MonoBehaviour
 {
     public GameObject city;
     //走らせたい距離
-    public int endPosition = 500;
+    public int endPosition = 350;
     //ターゲットキャラクターの指定が出来る様にするよ
     public Transform character;
     //現在位置
@@ -16,7 +16,7 @@ public class moveCity : MonoBehaviour
     int def = 0;
     void Start()
     {
-        def = (int)character.position.z * -1;
+        def = (int)character.position.z;
     }
 
     void Update()
@@ -25,18 +25,16 @@ public class moveCity : MonoBehaviour
         charaPos = (int)character.position.z;
 
 
-        //TODO　今はマイナスのポジションしか歩いてないけどプラスになったら別処理が必要
-        //そもそも0,0,0から走らせられたらこんな処理いらんけどね
-        if (charaPos + def > 500 )
+        if (charaPos - def > endPosition )
         {
             ChangePosition();
-            def = (int)character.position.z * -1;
+            def = (int)character.position.z;
         }
     }
 
     void ChangePosition()
     {
-        city.transform.position += new Vector3(0, 0, 20);
+        city.transform.position += new Vector3(0, 0, endPosition);
     }
 }
 

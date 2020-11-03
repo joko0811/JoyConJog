@@ -40,8 +40,9 @@ public class TargetGenerator : MonoBehaviour
     public float frontMaxPosition = 3.0f;
     //キャラクターの左右の幅の最大値
     public float widthMaxPosition = 2.0f;
-    //的を置く高さ
-    public float yPosition = 1.0f;
+    //的を置く高さの最大値最小値
+    public float minYPosition = 0.0f;
+    public float maxYPosition = 1.0f;
 
     //敵生成時間間隔
     private float interval;
@@ -63,11 +64,16 @@ public class TargetGenerator : MonoBehaviour
         if (time > interval)
         {
             GameObject target = Instantiate(targetPrefab);//targetをインスタンス化する(生成する)
-            target.transform.position = character.transform.position + GetForwardPositionOfCharacter() + new Vector3(0, yPosition, 0);
+            target.transform.position = character.transform.position + GetForwardPositionOfCharacter() + new Vector3(0, GetRandomYPosition(), 0);
             //target.transform.position = GetRandomPosition();
             time = 0f;
             interval = GetRandomTime();//次に発生する時間間隔を決定する
         }
+    }
+
+    private float GetRandomYPosition()
+    {
+        return Random.Range(minYPosition, maxYPosition);
     }
 
     private float GetRandomTime()

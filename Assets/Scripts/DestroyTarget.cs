@@ -7,26 +7,44 @@ public class DestroyTarget : MonoBehaviour
     GameObject player;
 
     public float destroyRange = 5.0f;
+    public GameObject Audio_Object;
+    
+    public AudioClip se;
+    AudioSource audioSource;
 
     // Start is called before the first frame update
     void Start()
     {
-        player = GameObject.FindGameObjectsWithTag("Player")[0];
     }
 
     // Update is called once per frame
-    void Update()
+    void FixedUpdate()
     {
-        if (this.transform.position.z < player.transform.position.z - destroyRange)
+        //ヌルポ対策
+        if (this.gameObject != null)
         {
-            Destroy(this.gameObject);
+            if (this.transform.position.z < player.transform.position.z - destroyRange )
+            {
+                destroy();
+            }
+
         }
     }
-    void OnCollisionEnter(Collision other)
+    void OnTriggerEnter(Collider other)
     {
+        /*
         if (other.gameObject.tag == "Player")
         {
-            Destroy(this.gameObject);
+        */
+        Instantiate(Audio_Object, transform.position, transform.rotation);
+        destroy();
+        /*1
         }
+        */
+    }
+
+    void destroy()
+    {
+        Destroy(this.gameObject);
     }
 }

@@ -3,26 +3,26 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class PrintVerocity : MonoBehaviour
+public class PrintVelocity : MonoBehaviour
 {
-    public GameObject score_object = null; // Textオブジェクト
-    public int score_num = 0; // スコア変数
+    //Rigidbodyを変数に入れる
+    public Rigidbody rb;
+    private Text velocityText;
+    float velocity;
     // Start is called before the first frame update
     void Start()
     {
-
     }
 
     // Update is called once per frame
     void Update()
     {
         // オブジェクトからTextコンポーネントを取得
-        Text score_text = score_object.GetComponent<Text>();
+        velocityText = this.GetComponent<Text>();
         // テキストの表示を入れ替える
-        score_text.text = "Score:" + score_num;
 
-        score_num += 1; // とりあえず1加算し続けてみる
-
+        velocity = rb.velocity.magnitude;
+        velocityText.text =  float.Parse(velocity.ToString("f1")) + "km/h";
     }
 }
 

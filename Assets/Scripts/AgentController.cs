@@ -26,6 +26,8 @@ public class AgentController : MonoBehaviour
     private Joycon m_joyconL;
     private Joycon m_joyconR;
 
+    private float levelValue;//加速度のいき値
+
     void Start()
     {
         agent = GetComponent<NavMeshAgent>();
@@ -40,6 +42,8 @@ public class AgentController : MonoBehaviour
         if (m_joycons == null || m_joycons.Count <= 0) return;
         m_joyconL = m_joycons.Find(c => c.isLeft);
         m_joyconR = m_joycons.Find(c => !c.isLeft);
+
+        levelValue = ChangeGameScene.levelValue;
     }
 
     void Update()
@@ -59,11 +63,10 @@ public class AgentController : MonoBehaviour
             //Debug.Log("accelMag" + accelMag);
             Debug.Log("velocity" + ((transform.position - playerPos) / Time.deltaTime).magnitude);
 
-
-
             float z;
             //Debug.Log(accelMag);
-            if (accelMag > 0.4)
+           // if (accelMag > 0.4)
+            if (accelMag > levelValue)
             {
                 time = 0;
                 //float x = Time.deltaTime * speed;
@@ -75,7 +78,6 @@ public class AgentController : MonoBehaviour
                 Debug.Log("agentspeed"+agent.speed);
                 if (direction.magnitude > 0.01f)
                 {
-
                     transform.rotation = Quaternion.LookRotation(new Vector3
                         (0, 0, direction.z));
                 }

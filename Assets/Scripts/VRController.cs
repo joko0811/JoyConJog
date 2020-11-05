@@ -172,6 +172,6 @@ public class VRController : MonoBehaviour
 
     private void OnGUI()
     {
-        GUI.Label(new Rect(Screen.width - 300, Screen.height - 80, 500, 500), "<size=60><color=red>"+float.Parse(velocity.ToString("f1")) +"km/h</color></size>",style);
+        //GUI.Label(new Rect(Screen.width - 300, Screen.height - 80, 500, 500), "<size=60><color=red>"+float.Parse(velocity.ToString("f1")) +"km/h</color></size>",style);
     }
 }

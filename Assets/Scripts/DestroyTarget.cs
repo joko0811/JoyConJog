@@ -4,8 +4,7 @@ using UnityEngine;
 
 public class DestroyTarget : MonoBehaviour
 {
-    GameObject player;
-
+    GameObject player; 
     public float destroyRange = 5.0f;
     public GameObject Audio_Object;
     
@@ -15,6 +14,7 @@ public class DestroyTarget : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        player = GameObject.FindGameObjectWithTag("MainCamera");
     }
 
     // Update is called once per frame
@@ -32,15 +32,12 @@ public class DestroyTarget : MonoBehaviour
     }
     void OnTriggerEnter(Collider other)
     {
-        /*
         if (other.gameObject.tag == "Player")
         {
-        */
-        Instantiate(Audio_Object, transform.position, transform.rotation);
-        destroy();
-        /*1
+            PrintScore.score+=100;
+            Instantiate(Audio_Object, transform.position, transform.rotation);
+            destroy();
         }
-        */
     }
 
     void destroy()

@@ -3,32 +3,31 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class PrintVelocity : MonoBehaviour
+public class PrintDistance : MonoBehaviour
 {
     //Rigidbodyを変数に入れる
     public Rigidbody rb;
-    private Text velocityText;
-    private float velocity = 0f;
-    public static float maxVelocity = 0f;
+    private Text distanceText;
+    private float totalDistance = 0;
+    private Vector3 prev = new Vector3( 0, 0, 0 );
+
     // Start is called before the first frame update
     void Start()
     {
-        maxVelocity = 0f;
+        
     }
 
     // Update is called once per frame
     void Update()
     {
         // オブジェクトからTextコンポーネントを取得
-        velocityText = this.GetComponent<Text>();
+        distanceText = this.GetComponent<Text>();
         // テキストの表示を入れ替える
 
-        velocity = rb.velocity.magnitude;
-        velocityText.text =  velocity.ToString("f1");
-        if (velocity > maxVelocity)
-        {
-            maxVelocity = velocity;
-        }
+        Vector3 pos = transform.position;
+        Vector3 dis = pos - prev;
+        totalDistance += dis.magnitude;
+        distanceText.text =  float.Parse(totalDistance.ToString("f1")) + "m";
+        prev = pos;
     }
 }
-

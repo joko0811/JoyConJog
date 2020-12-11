@@ -14,9 +14,8 @@ public class UpdateVelocity : MonoBehaviour
         velocityText.text = SaveScoreAndVelocity.updateVelocityText;
     }
 
-    private void Update()
+    void Update()
     {
         velocityText.text = SaveScoreAndVelocity.updateVelocityText;
-        
     }
 }

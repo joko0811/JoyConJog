@@ -18,6 +18,5 @@ public class UpdateScore : MonoBehaviour
     void Update()
     {
         scoreText.text = SaveScoreAndVelocity.updateScoreText;
-        
     }
 }

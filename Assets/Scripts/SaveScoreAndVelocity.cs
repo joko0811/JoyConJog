@@ -22,15 +22,17 @@ public class SaveScoreAndVelocity : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        isUpdateScore = false;
+        isUpdateVelocity = false;
+        updateScoreText = "";
+        updateVelocityText = "";
         GetRanking();
         PlayerPrefs.SetInt("SCORE", PrintScore.score);
         PlayerPrefs.SetFloat("VELOCITY", float.Parse(PrintVelocity.maxVelocity.ToString("f1")));
         PlayerPrefs.Save();
         score = PrintScore.score;
         velocity = float.Parse(PrintVelocity.maxVelocity.ToString("f1"));
-        GetRanking();
         UpdateRanking();
-
     }
 
 

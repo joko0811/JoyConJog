@@ -5,7 +5,7 @@ using UnityEngine.SceneManagement;
 
 public class Timeout : MonoBehaviour
 {
-    public static float limitTime = 10f;
+    public static float limitTime = 60f;
     public string endSceneName = "ResultScene";
     private float count;
     // Start is called before the first frame update

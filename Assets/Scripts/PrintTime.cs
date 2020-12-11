@@ -29,7 +29,7 @@ public class PrintTime : MonoBehaviour
         //countdownが0以下になったとき
         if (countdown <= 0)
         {
-            timeText.text = "時間になりました！";
+            timeText.text = "0";
         }
     }
 }

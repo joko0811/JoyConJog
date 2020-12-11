@@ -13,6 +13,9 @@ public class TargetGenerator : MonoBehaviour
     [SerializeField]
     private GameObject character;
 
+    public Rigidbody rb;
+    float velocity = 0f;
+
     [Header("Set Interval Min and Max")]
     //時間間隔の最小値
     public float minTime = 2f;
@@ -40,19 +43,22 @@ public class TargetGenerator : MonoBehaviour
     public float frontMaxPosition = 3.0f;
     //キャラクターの左右の幅の最大値
     public float widthMaxPosition = 2.0f;
-    //的を置く高さ
-    public float yPosition = 1.0f;
+    //的を置く高さの最大値最小値
+    public float minYPosition = 0.0f;
+    public float maxYPosition = 1.0f;
 
     //敵生成時間間隔
     private float interval;
     //経過時間
     private float time = 0f;
 
+    float firstMaxTime;
 
     // Start is called before the first frame update
     void Start()
     {
         interval = GetRandomTime();
+        firstMaxTime = maxTime; 
     }
 
     // Update is called once per frame
@@ -63,11 +69,26 @@ public class TargetGenerator : MonoBehaviour
         if (time > interval)
         {
             GameObject target = Instantiate(targetPrefab);//targetをインスタンス化する(生成する)
-            target.transform.position = character.transform.position + GetForwardPositionOfCharacter() + new Vector3(0, yPosition, 0);
+            target.transform.position = character.transform.position + GetForwardPositionOfCharacter() + new Vector3(0, GetRandomYPosition(), 0);
             //target.transform.position = GetRandomPosition();
-            time = 0f;
+            velocity = rb.velocity.magnitude;
+            if (velocity != 0)
+            {
+                maxTime = firstMaxTime * (1 / (Mathf.Sqrt(velocity))) + 0.2f;
+                Debug.Log("maxTime : " + maxTime);
+            }
             interval = GetRandomTime();//次に発生する時間間隔を決定する
+            time = 0f;
         }
+    }
+
+    void FixedUpdate()
+    {
+    }
+
+    private float GetRandomYPosition()
+    {
+        return Random.Range(minYPosition, maxYPosition);
     }
 
     private float GetRandomTime()

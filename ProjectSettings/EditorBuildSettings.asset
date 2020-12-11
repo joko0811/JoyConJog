@@ -4,5 +4,24 @@
 EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
-  m_Scenes: []
-  m_configObjects: {}
+  m_Scenes:
+  - enabled: 1
+    path: Assets/Scenes/Start.unity
+    guid: 5bce227d7bd1ca74a939339c1b4547f4
+  - enabled: 1
+    path: Assets/Scenes/GameScene.unity
+    guid: b040999ea23af2046bac712e0818c0df
+  - enabled: 1
+    path: Assets/Scenes/ResultScene.unity
+    guid: a38061797291be141a6381695aa8e121
+  - enabled: 1
+    path: Assets/Scenes/RankingScene.unity
+    guid: 18ccc47f855941240bf94ebe9c0198ed
+  - enabled: 1
+    path: Assets/Scenes/VelocityRankingScene.unity
+    guid: 86fb608a7fe848e489136b06fbf22ca8
+  m_configObjects:
+    Unity.XR.Oculus.Settings: {fileID: 11400000, guid: 7b4d3d57143239f4d9609b209c4f1335,
+      type: 2}
+    com.unity.xr.management.loader_settings: {fileID: 11400000, guid: 33333c906dfbb1b41ae5bf2310438476,
+      type: 2}
